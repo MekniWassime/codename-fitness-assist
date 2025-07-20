@@ -1,0 +1,28 @@
+// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "codename_fitness_assist",
+            "cwd": "apps/codename_fitness_assist",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "codename_fitness_assist (profile mode)",
+            "cwd": "apps/codename_fitness_assist",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "codename_fitness_assist (release mode)",
+            "cwd": "apps/codename_fitness_assist",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+    ]
+}
