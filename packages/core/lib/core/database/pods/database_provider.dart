@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 part 'database_provider.g.dart';
 
-@Riverpod(keepAlive: true)
+@Riverpod(keepAlive: true, dependencies: [])
 Database database(Ref ref) {
   throw UnimplementedError(
     'Database must be initialized and overridden in ProviderScope',

@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
-import 'package:core/core/pods/database_provider.dart';
-import 'package:core/core/test/test_provider.dart';
+import 'package:core/core/database/pods/database_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sqflite/sqflite.dart';
@@ -13,6 +12,7 @@ class MyAppCore extends StatelessWidget {
 
   static Future<AppConfig> getConfig({required String dbName}) async {
     final db = await openDatabase(dbName);
+    debugPrint("Database Opened");
     return AppConfig(database: db);
   }
 
@@ -36,7 +36,6 @@ class MyHomePage extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final testString = ref.read(testProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -48,7 +47,10 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
             MyButton(onPressed: () {}, child: Text("Button from UI package")),
-            Text(testString, style: Theme.of(context).textTheme.headlineMedium),
+            Text(
+              "PLACEHOLDER",
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ],
         ),
       ),
