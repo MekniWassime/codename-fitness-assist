@@ -1,0 +1,5 @@
+name: codename_fitness_assist_workspace
+
+packages:
+  - apps/**
+  - packages/**

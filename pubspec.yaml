@@ -1,0 +1,11 @@
+name: codename_fitness_assist_workspace
+publish_to: none
+environment:
+  sdk: ^3.8.1
+workspace:
+  - packages/ui
+  - packages/lazy_sync
+  - packages/core
+  - apps/codename_fitness_assist
+dev_dependencies:
+  melos: ^6.3.3
