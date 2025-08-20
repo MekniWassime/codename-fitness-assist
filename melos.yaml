@@ -3,3 +3,44 @@ name: codename_fitness_assist_workspace
 packages:
   - apps/**
   - packages/**
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    run: flutter analyze
+    description: Analyze all packages
+
+  format:
+    run: flutter format .
+    description: Format all packages
+
+  test:
+    run: flutter test --coverage
+    description: Run tests only in selected packages
+
+  clean:
+    run: flutter clean
+    description: Clean selected packages
+
+  pub_get:
+    run: flutter pub get
+    description: Get dependencies for selected packages
+
+  build_runner:
+    run: flutter pub run build_runner build --delete-conflicting-outputs
+    exec:
+      failFast: false
+    description: Watch build_runner only where it's needed
+    packageFilters:
+      dependsOn: build_runner
+
+  watch_runner:
+    run: flutter pub run build_runner watch --delete-conflicting-outputs
+    exec:
+      failFast: false
+    description: Watch build_runner only where it's needed
+    packageFilters:
+      dependsOn: build_runner

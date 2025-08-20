@@ -4,7 +4,6 @@ import 'package:core/features/events/models/events_entity.dart';
 import 'package:core/core/sync_engine/pods/sync_client_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lazy_sync/core.dart';
 import 'package:lazy_sync/main/sync_client.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:ui/widgets/button.dart';

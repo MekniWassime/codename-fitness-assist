@@ -40,9 +40,9 @@ class SyncClient {
     return entityMap[T] as T;
   }
 
-  ValueNotifier<T?>? _getLatestNotifierIfExists<T extends SyncModel>() {
-    return latestNotifierMap[T] as ValueNotifier<T?>?;
-  }
+  // ValueNotifier<T?>? _getLatestNotifierIfExists<T extends SyncModel>() {
+  //   return latestNotifierMap[T] as ValueNotifier<T?>?;
+  // }
 
   ValueNotifier<T?> getLatestNotifier<T extends SyncModel>() {
     if (!latestNotifierMap.containsKey(T)) {
