@@ -1,0 +1,6 @@
+name: codename_fitness_assist_workspace
+publish_to: none
+environment:
+  sdk: ^3.8.1
+dev_dependencies:
+  melos: ^6.3.3
