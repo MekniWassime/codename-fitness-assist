@@ -12,10 +12,10 @@ class EventsEntity extends SyncEntity<Event, Uint8List> {
   }
 
   @override
-  Event fromMap(Map<String, dynamic> row) {
-    // TODO: implement fromMap
-    throw UnimplementedError();
-  }
+  Event fromMap(Map<String, dynamic> row) => Event(
+    name: row["name"],
+    timestamp: DateTime.fromMillisecondsSinceEpoch(row["date"]),
+  );
 
   @override
   // TODO: implement requestInterceptor
@@ -32,10 +32,10 @@ class EventsEntity extends SyncEntity<Event, Uint8List> {
   final String slug = "events";
 
   @override
-  Map<String, dynamic> toMap(Event data) {
-    // TODO: implement toMap
-    throw UnimplementedError();
-  }
+  Map<String, dynamic> toMap(Event data) => {
+    "name": data.name,
+    "date": data.timestamp.millisecondsSinceEpoch,
+  };
 
   @override
   List<String> get sqliteFields => ["name TEXT", "date DATETIME"];

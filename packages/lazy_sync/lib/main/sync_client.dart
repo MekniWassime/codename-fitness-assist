@@ -40,7 +40,7 @@ class SyncClient {
     T data,
   ) async {
     final raw = entity.toMap(data);
-    database.insert(entity.slug, raw);
+    await database.insert(entity.slug, raw);
     // Notify related queries that this entity table has been updated
     _databaseEventsStreamController.add(DatabaseInsertEvent(entity: entity));
   }
@@ -53,7 +53,7 @@ class SyncClient {
     final result = await database.query(entity.slug);
     yield result.map((raw) => entity.fromMap(raw)).toList();
     // refresh the query everytime an operation is perfomed on this entry
-    final stream = databaseEventsStream.where((e) => e.entity is T);
+    final stream = databaseEventsStream;
     await for (final _ in stream) {
       final result = await database.query(entity.slug);
       yield result.map((raw) => entity.fromMap(raw)).toList();
