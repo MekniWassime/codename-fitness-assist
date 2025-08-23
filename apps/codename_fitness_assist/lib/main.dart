@@ -9,22 +9,5 @@ void main() async {
     clearDatabase: true,
   );
   debugPrint("Initialized");
-  runApp(MyApp(config: config));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.config});
-  final AppConfig config;
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: MyAppCore(config: config),
-    );
-  }
+  runApp(MyAppCore(config: config));
 }
