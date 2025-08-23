@@ -14,7 +14,7 @@ class EventsEntity extends SyncEntity<Event, Uint8List> {
   @override
   Event fromMap(Map<String, dynamic> row) => Event(
     name: row["name"],
-    timestamp: DateTime.fromMillisecondsSinceEpoch(row["date"]),
+    timestamp: DateTime.fromMillisecondsSinceEpoch(row["timestamp"]),
   );
 
   @override
@@ -34,9 +34,9 @@ class EventsEntity extends SyncEntity<Event, Uint8List> {
   @override
   Map<String, dynamic> toMap(Event data) => {
     "name": data.name,
-    "date": data.timestamp.millisecondsSinceEpoch,
+    "timestamp": data.timestamp.millisecondsSinceEpoch,
   };
 
   @override
-  List<String> get sqliteFields => ["name TEXT", "date DATETIME"];
+  List<String> get sqliteFields => ["name TEXT", "timestamp DATETIME"];
 }

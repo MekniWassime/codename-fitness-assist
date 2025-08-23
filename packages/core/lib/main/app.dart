@@ -1,8 +1,9 @@
 import 'package:core/core.dart';
 import 'package:core/core/database/pods/database_provider.dart';
 import 'package:core/features/events/models/event.dart';
-import 'package:core/features/events/models/events_entity.dart';
+import 'package:core/features/events/entities/events_entity.dart';
 import 'package:core/core/sync_engine/pods/sync_client_provider.dart';
+import 'package:core/features/primitive_tables/entities/numeric_entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,7 +31,7 @@ class MyAppCore extends StatelessWidget {
       serverUrlPrefix: "sync-engine",
       database: db,
       log: debugPrint,
-      entities: [EventsEntity()],
+      entities: [EventsEntity(), NumericEntity()],
     );
     await syncClient.createDatabaseSchema();
     return AppConfig(database: db, syncClient: syncClient);
@@ -72,7 +73,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
             StreamBuilder(
-              stream: client.query(entity),
+              stream: client.queryMany(entity),
               builder: (context, snapshot) => ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),

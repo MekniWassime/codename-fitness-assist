@@ -5,14 +5,15 @@ part 'database_event.freezed.dart';
 
 abstract class DatabaseEventBase {
   SyncEntity get entity;
+  String? get id;
 }
 
 @freezed
 sealed class DatabaseEvent with _$DatabaseEvent implements DatabaseEventBase {
-  factory DatabaseEvent.insert({required SyncEntity entity}) =
+  factory DatabaseEvent.insert({required SyncEntity entity, String? id}) =
       DatabaseInsertEvent;
-  factory DatabaseEvent.update({required SyncEntity entity}) =
+  factory DatabaseEvent.update({required SyncEntity entity, String? id}) =
       DatabaseUpdateEvent;
-  factory DatabaseEvent.delete({required SyncEntity entity}) =
+  factory DatabaseEvent.delete({required SyncEntity entity, String? id}) =
       DatabaseDeleteEvent;
 }

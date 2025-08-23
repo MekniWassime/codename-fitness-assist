@@ -21,11 +21,22 @@ abstract class SyncEntity<T extends SyncModel, V> {
   T deserialize(V data);
 
   /// List of the local database fields
-  /// they will be joined and added to a CREATE IF NOT EXISTS statement
+  /// they will be joined and added to the CREATE IF NOT EXISTS statement
   List<String> get sqliteFields;
 
   late final createIfNotExistsQuery =
       "CREATE TABLE IF NOT EXISTS $slug (${sqliteFields.join(",")})";
 
   late final dropIfExistsQuery = "DROP TABLE IF EXISTS $slug";
+
+  // Equality Override //
+
+  @override
+  bool operator ==(Object other) {
+    if (other is! SyncEntity) return false;
+    return slug == other.slug;
+  }
+
+  @override
+  int get hashCode => Object.hash(slug, this);
 }
