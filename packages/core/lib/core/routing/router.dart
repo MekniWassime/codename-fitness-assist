@@ -3,13 +3,24 @@ import 'package:core/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+enum PathRoute {
+  root("/"),
+  home("/home"),
+  biking("/biking"),
+  jogging("/jogging");
+
+  const PathRoute(this.path);
+  final String path;
+}
+
 GoRouter createRouter(GlobalKey<NavigatorState> rootNavigationKey) {
   return GoRouter(
     navigatorKey: rootNavigationKey,
-    initialLocation: "/a",
+    initialLocation: PathRoute.home.path,
     routes: <RouteBase>[
       GoRoute(
-        path: '/',
+        path: PathRoute.root.path,
+        name: PathRoute.root.name,
         builder: (BuildContext context, GoRouterState state) {
           return const HomeScreen(title: "test");
         },
@@ -36,7 +47,8 @@ GoRouter createRouter(GlobalKey<NavigatorState> rootNavigationKey) {
               GoRoute(
                 // The screen to display as the root in the first tab of the
                 // bottom navigation bar.
-                path: '/a',
+                path: PathRoute.jogging.path,
+                name: PathRoute.jogging.name,
                 builder: (BuildContext context, GoRouterState state) =>
                     const HomeScreen(title: "Title A"),
                 routes: <RouteBase>[
@@ -64,7 +76,8 @@ GoRouter createRouter(GlobalKey<NavigatorState> rootNavigationKey) {
               GoRoute(
                 // The screen to display as the root in the second tab of the
                 // bottom navigation bar.
-                path: '/b',
+                path: PathRoute.home.path,
+                name: PathRoute.home.name,
                 builder: (BuildContext context, GoRouterState state) =>
                     const HomeScreen(title: "Title B"),
                 routes: <RouteBase>[
@@ -87,7 +100,8 @@ GoRouter createRouter(GlobalKey<NavigatorState> rootNavigationKey) {
               GoRoute(
                 // The screen to display as the root in the third tab of the
                 // bottom navigation bar.
-                path: '/c',
+                path: PathRoute.biking.path,
+                name: PathRoute.biking.name,
                 builder: (BuildContext context, GoRouterState state) =>
                     const HomeScreen(title: "Tilte C"),
                 routes: <RouteBase>[
