@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router_provider.g.dart';
 
-@Riverpod()
+@Riverpod(keepAlive: true)
 GoRouter router(Ref ref) {
   final rootNavigationKey = ref.read(rootNavigationKeyProvider);
   return createRouter(rootNavigationKey);

@@ -12,11 +12,17 @@ class SyncedSliderRow extends ConsumerWidget {
     this.defaultValue = 0,
     required this.label,
     required this.subtitle,
+    this.min,
+    this.max,
+    this.showBounds,
   });
   final String id;
   final double defaultValue;
   final String label;
   final String subtitle;
+  final double? min;
+  final double? max;
+  final bool? showBounds;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,6 +42,7 @@ class SyncedSliderRow extends ConsumerWidget {
       },
       label: label,
       subtitle: subtitle,
+      showBounds: showBounds,
     );
   }
 }

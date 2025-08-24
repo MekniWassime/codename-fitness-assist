@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lazy_sync/main/sync_client.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MyAppCore extends StatelessWidget {
+class MyAppCore extends StatefulWidget {
   final AppConfig _config;
 
   const MyAppCore({super.key, required AppConfig config}) : _config = config;
@@ -38,26 +38,38 @@ class MyAppCore extends StatelessWidget {
   }
 
   @override
+  State<MyAppCore> createState() => _MyAppCoreState();
+}
+
+class _MyAppCoreState extends State<MyAppCore> {
+  @override
   Widget build(BuildContext context) {
     return ProviderScope(
       overrides: [
-        databaseProvider.overrideWithValue(_config.database),
-        syncClientProvider.overrideWithValue(_config.syncClient),
+        databaseProvider.overrideWithValue(widget._config.database),
+        syncClientProvider.overrideWithValue(widget._config.syncClient),
       ],
       child: _MyMaterialApp(),
     );
   }
 }
 
-class _MyMaterialApp extends ConsumerWidget {
+class _MyMaterialApp extends ConsumerStatefulWidget {
   const _MyMaterialApp();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_MyMaterialApp> createState() => _MyMaterialAppState();
+}
+
+class _MyMaterialAppState extends ConsumerState<_MyMaterialApp> {
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color.fromARGB(255, 0, 255, 213),
+        ),
         sliderTheme: SliderThemeData(trackHeight: 24),
         scaffoldBackgroundColor: Color.fromARGB(255, 233, 237, 242),
         cardColor: Color(0xffffffff),

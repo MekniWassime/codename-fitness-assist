@@ -10,6 +10,9 @@ class StreamSliderRow extends StatelessWidget {
     this.defaultValue = 0,
     required this.label,
     required this.subtitle,
+    this.min,
+    this.max,
+    this.showBounds,
   });
   final String id;
   final Stream<double> stream;
@@ -17,6 +20,9 @@ class StreamSliderRow extends StatelessWidget {
   final String label;
   final String subtitle;
   final void Function(double value)? onChanged;
+  final double? min;
+  final double? max;
+  final bool? showBounds;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +38,9 @@ class StreamSliderRow extends StatelessWidget {
           subtitle: subtitle,
           value: value ?? defaultValue,
           onChangeEnd: onChanged,
+          max: max,
+          min: min,
+          showBounds: showBounds ?? false,
         );
       },
     );

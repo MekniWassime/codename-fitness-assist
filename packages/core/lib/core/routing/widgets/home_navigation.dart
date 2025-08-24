@@ -22,9 +22,15 @@ class ScaffoldWithNavBar extends StatelessWidget {
         // branches of the shell route, which can be fetched using
         // `navigationShell.route.branches`.
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Section A'),
-          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Section B'),
-          BottomNavigationBarItem(icon: Icon(Icons.tab), label: 'Section C'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.directions_walk),
+            label: 'Running',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.directions_bike),
+          //   label: 'Cycling',
+          // ),
         ],
         currentIndex: navigationShell.currentIndex,
         // Navigate to the current location of the branch at the provided index

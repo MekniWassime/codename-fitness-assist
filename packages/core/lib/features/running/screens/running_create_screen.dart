@@ -3,22 +3,19 @@ import 'package:core/core/widgets/synced_switch_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key, required this.title});
+class CreateRunningScreen extends ConsumerStatefulWidget {
+  const CreateRunningScreen({super.key, required this.title});
   final String title;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _CreateRunningScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
+class _CreateRunningScreenState extends ConsumerState<CreateRunningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),

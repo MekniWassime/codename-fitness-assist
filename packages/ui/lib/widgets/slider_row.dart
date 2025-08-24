@@ -5,10 +5,10 @@ class SliderRow extends StatefulWidget {
     super.key,
     this.borderRadius,
     this.onChangeEnd,
-    this.min = 0,
-    this.max = 1,
+    this.min,
+    this.max,
     this.value = 0,
-    this.displayRange = false,
+    this.showBounds = false,
     this.controller,
     required this.label,
     required this.subtitle,
@@ -19,9 +19,9 @@ class SliderRow extends StatefulWidget {
   final void Function(double value)? onChangeEnd;
   final double value;
   final BorderRadius? borderRadius;
-  final double min;
-  final double max;
-  final bool displayRange;
+  final double? min;
+  final double? max;
+  final bool showBounds;
   final ValueNotifier<double>? controller;
 
   @override
@@ -58,27 +58,26 @@ class _SliderRowState extends State<SliderRow> {
                   padding: EdgeInsets.zero,
                   value: value,
                   onChanged: (value) {
-                    debugPrint(value.toString());
                     controller.value = value;
                   },
                   onChangeEnd: widget.onChangeEnd,
-                  min: widget.min,
-                  max: widget.max,
+                  min: widget.min ?? 0,
+                  max: widget.max ?? 1,
                 );
               },
             ),
-            if (widget.displayRange)
+            if (widget.showBounds)
               Padding(
                 padding: const EdgeInsets.only(left: 2, right: 2, top: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${widget.min.floor()}",
+                      "${(widget.min ?? 0).floor()}",
                       style: TextStyle(color: Theme.of(context).disabledColor),
                     ),
                     Text(
-                      "${widget.max.floor()}",
+                      "${(widget.max ?? 1).floor()}",
                       style: TextStyle(color: Theme.of(context).disabledColor),
                     ),
                   ],
