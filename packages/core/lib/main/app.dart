@@ -3,6 +3,7 @@ import 'package:core/core/database/pods/database_provider.dart';
 import 'package:core/core/routing/pods/router_provider.dart';
 import 'package:core/features/events/entities/events_entity.dart';
 import 'package:core/core/sync_engine/pods/sync_client_provider.dart';
+import 'package:core/features/primitive_tables/entities/boolean_entity.dart';
 import 'package:core/features/primitive_tables/entities/numeric_entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class MyAppCore extends StatelessWidget {
       serverUrlPrefix: "sync-engine",
       database: db,
       log: debugPrint,
-      entities: [EventsEntity(), NumericEntity()],
+      entities: [EventsEntity(), NumericEntity(), BooleanEntity()],
     );
     await syncClient.createDatabaseSchema();
     return AppConfig(database: db, syncClient: syncClient);
@@ -57,6 +58,9 @@ class _MyMaterialApp extends ConsumerWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        sliderTheme: SliderThemeData(trackHeight: 24),
+        scaffoldBackgroundColor: Color.fromARGB(255, 233, 237, 242),
+        cardColor: Color(0xffffffff),
       ),
       routerConfig: ref.read(routerProvider),
     );

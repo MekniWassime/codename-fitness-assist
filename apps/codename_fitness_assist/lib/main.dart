@@ -6,7 +6,7 @@ void main() async {
   debugPrint("Initializing:...");
   final config = await MyAppCore.getConfig(
     dbName: "database.db",
-    clearDatabase: true,
+    clearDatabase: false,
   );
   debugPrint("Initialized");
   runApp(MyAppCore(config: config));

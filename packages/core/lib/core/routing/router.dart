@@ -1,4 +1,4 @@
-import 'package:core/features/home/screens/home_navigation.dart';
+import 'package:core/core/routing/widgets/home_navigation.dart';
 import 'package:core/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

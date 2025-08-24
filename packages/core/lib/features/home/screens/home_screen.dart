@@ -1,9 +1,9 @@
-import 'package:core/core/sync_engine/pods/sync_client_provider.dart';
-import 'package:core/features/events/entities/events_entity.dart';
-import 'package:core/features/events/models/event.dart';
+import 'package:core/core/widgets/stream_slider_row.dart';
+import 'package:core/core/widgets/synced_slider_row.dart';
+import 'package:core/core/widgets/synced_switch_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ui/widgets/button.dart';
+import 'package:ui/widgets/slider_row.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -16,49 +16,64 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final client = ref.read(syncClientProvider);
-    final entity = client.getEntity<EventsEntity>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            StreamBuilder(
-              stream: client.queryMany(entity),
-              builder: (context, snapshot) => ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: snapshot.data?.length ?? 0,
-                itemBuilder: (context, index) {
-                  final item = snapshot.data?[index];
-                  if (item == null) return null;
-                  return Text(
-                    "${item.name} - ${item.timestamp.millisecondsSinceEpoch}",
-                  );
-                },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: SyncedSwitchRow(
+                  id: "test-swtich-1",
+                  label: "Placeholder1",
+                  subtitle: "Esse minim fugiat in dolor nisi ullamco.",
+                ),
               ),
-            ),
-            MyButton(
-              onPressed: () {
-                final client = ref.read(syncClientProvider);
-                final entity = client.getEntity<EventsEntity>();
-                client.insert(
-                  entity,
-                  Event(name: "test", timestamp: DateTime.now()),
-                );
-              },
-              child: Text("Button from UI package"),
-            ),
-            Text(
-              "PLACEHOLDER",
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: SyncedSwitchRow(
+                  id: "test-swtich-2",
+                  label: "Placeholder2",
+                  subtitle: "Esse minim fugiat in dolor nisi ullamco.",
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: SyncedSwitchRow(
+                  id: "test-swtich-3",
+                  label: "Placeholder3",
+                  subtitle: "Esse minim fugiat in dolor nisi ullamco.",
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: SyncedSliderRow(
+                  id: "test-slider-1",
+                  label: "Placeholder4",
+                  subtitle: "Id nisi dolor sint ex fugiat adipisicing.",
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
