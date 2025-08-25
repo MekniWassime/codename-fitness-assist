@@ -35,4 +35,5 @@ Creating a lightweight sdk that would:
 - Robust sqlite to/from model conversion
 - Error reporting
 - Implement the server sync logic
+- Documentation especially for the reusable widgets
 - Implement the actual usable use case that inspired this
