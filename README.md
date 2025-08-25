@@ -25,6 +25,7 @@ Creating a lightweight sdk that would:
   - packages/core: contains the core app logic and UI
   - packages/lazy-sync: a sync client responsible for realtime local database and data sync from and to the server
   - packages/ui: contains UI primitives
+- Usage of streams for data to UI updates
 - Go router navigation with indexed stack BottomNav navigation
 - Custom widgets extending form fields
 - freezed models
