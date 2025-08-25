@@ -29,3 +29,10 @@ Creating a lightweight sdk that would:
 - Go router navigation with indexed stack BottomNav navigation
 - Custom widgets extending form fields
 - freezed models
+
+### Future improvements
+
+- Robust sqlite to/from model conversion
+- Error reporting
+- Implement the server sync logic
+- Implement the actual usable use case that inspired this
