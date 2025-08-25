@@ -36,7 +36,7 @@ class SyncClient {
   }
 
   /// Insert data into the entity table
-  void insert<T extends SyncModel>(
+  Future<void> insert<T extends SyncModel>(
     SyncEntity<T, Object?> entity,
     T data,
   ) async {

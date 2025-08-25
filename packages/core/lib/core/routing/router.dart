@@ -50,8 +50,10 @@ GoRouter createRouter(GlobalKey<NavigatorState> rootNavigationKey) {
                     name: PathRoute.joggingCreate.name,
                     pageBuilder: (BuildContext context, GoRouterState state) =>
                         ModalBottomSheetPage(
+                          isScrollControlled: true,
+                          enableDrag: true,
                           builder: (context) =>
-                              const CreateRunningScreen(title: "test"),
+                              CreateRunningScreen(title: "test"),
                         ),
                   ),
                 ],

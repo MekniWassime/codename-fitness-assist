@@ -5,6 +5,7 @@ import 'package:core/features/events/entities/events_entity.dart';
 import 'package:core/core/sync_engine/pods/sync_client_provider.dart';
 import 'package:core/features/primitive_tables/entities/boolean_entity.dart';
 import 'package:core/features/primitive_tables/entities/numeric_entity.dart';
+import 'package:core/features/running/entities/running_entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +32,12 @@ class MyAppCore extends StatefulWidget {
       serverUrlPrefix: "sync-engine",
       database: db,
       log: debugPrint,
-      entities: [EventsEntity(), NumericEntity(), BooleanEntity()],
+      entities: [
+        EventsEntity(),
+        NumericEntity(),
+        BooleanEntity(),
+        RunningEntity(),
+      ],
     );
     await syncClient.createDatabaseSchema();
     return AppConfig(database: db, syncClient: syncClient);
