@@ -33,6 +33,7 @@ Creating a lightweight sdk that would:
 ### Future improvements
 
 - Robust sqlite to/from model conversion
+- database migrations and automated schema generation
 - Error reporting
 - Implement the server sync logic
 - Documentation especially for the reusable widgets
