@@ -1,6 +1,6 @@
 import 'package:core/core/routing/widgets/home_navigation.dart';
 import 'package:core/core/routing/widgets/modal_bottom_sheet_page.dart';
-import 'package:core/features/home/screens/home_screen.dart';
+import 'package:core/features/settings/screens/settings_screen.dart';
 import 'package:core/features/running/screens/running_create_screen.dart';
 import 'package:core/features/running/screens/running_screen.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +8,7 @@ import 'package:go_router/go_router.dart';
 
 enum PathRoute {
   root("/"),
-  home("/home"),
-  biking("/biking"),
+  settings("/settings"),
   jogging("/jogging"),
   joggingCreate("/jogging/create");
 
@@ -20,13 +19,13 @@ enum PathRoute {
 GoRouter createRouter(GlobalKey<NavigatorState> rootNavigationKey) {
   return GoRouter(
     navigatorKey: rootNavigationKey,
-    initialLocation: PathRoute.home.path,
+    initialLocation: PathRoute.jogging.path,
     routes: <RouteBase>[
       GoRoute(
         path: PathRoute.root.path,
         name: PathRoute.root.name,
         builder: (BuildContext context, GoRouterState state) {
-          return const HomeScreen(title: "test");
+          return const SettingsScreen(title: "test");
         },
       ),
       StatefulShellRoute.indexedStack(
@@ -63,10 +62,10 @@ GoRouter createRouter(GlobalKey<NavigatorState> rootNavigationKey) {
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(
-                path: PathRoute.home.path,
-                name: PathRoute.home.name,
+                path: PathRoute.settings.path,
+                name: PathRoute.settings.name,
                 builder: (BuildContext context, GoRouterState state) =>
-                    const HomeScreen(title: "Title B"),
+                    const SettingsScreen(title: "Title B"),
                 routes: <RouteBase>[],
               ),
             ],

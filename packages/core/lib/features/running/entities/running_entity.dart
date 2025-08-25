@@ -46,4 +46,10 @@ class RunningEntity extends SyncEntity<RunningEntry, Uint8List> {
     "intensity INTEGER",
     "timestamp DATETIME",
   ];
+
+  late final String averageAndSumRawQuery =
+      """
+    SELECT sum(distance) as total, avg(distance) as average
+    FROM $slug 
+  """;
 }

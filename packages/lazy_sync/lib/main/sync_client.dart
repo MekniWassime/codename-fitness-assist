@@ -148,12 +148,14 @@ class SyncClient {
     List<Object?>? args,
   ]) async* {
     final result = await database.rawQuery(query, args);
+    log("result first query");
     yield result;
     final stream = databaseEventsStream.where(
       (event) => event.entity == entity,
     );
     await for (final _ in stream) {
-      final result = await database.query(entity.slug);
+      log("result stream");
+      final result = await database.rawQuery(query, args);
       yield result;
     }
   }

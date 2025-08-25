@@ -1,10 +1,15 @@
+import 'package:core/core/sync_engine/pods/sync_client_provider.dart';
+import 'package:core/features/running/entities/running_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RunningHeader extends StatelessWidget {
+class RunningHeader extends ConsumerWidget {
   const RunningHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final client = ref.read(syncClientProvider);
+    final entity = client.getEntity<RunningEntity>();
     return SliverResizingHeader(
       maxExtentPrototype: Padding(
         padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
@@ -42,12 +47,35 @@ class RunningHeader extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(children: [Text("Total: "), Text("50km")]),
-                            Row(children: [Text("Average: "), Text("50km")]),
-                          ],
+                        StreamBuilder(
+                          stream: client.queryRaw(
+                            entity,
+                            entity.averageAndSumRawQuery,
+                          ),
+                          builder: (context, asyncSnapshot) {
+                            final data = asyncSnapshot.data?.firstOrNull;
+                            debugPrint(data.toString());
+                            final double total = (data?["total"] ?? 0) + 0.0;
+                            final double average =
+                                (data?["average"] ?? 0) + 0.0;
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text("Total: "),
+                                    Text("${total.toInt()}km"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text("Average: "),
+                                    Text("${average.ceil()}km"),
+                                  ],
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ],
                     ),

@@ -26,7 +26,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
             icon: Icon(Icons.directions_walk),
             label: 'Running',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.directions_bike),
           //   label: 'Cycling',
